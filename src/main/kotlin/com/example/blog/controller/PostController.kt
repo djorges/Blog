@@ -9,6 +9,7 @@ import com.example.blog.utils.Constants.DEFAULT_SORT_BY
 import com.example.blog.utils.Constants.DEFAULT_SORT_DIRECTION
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 
 @RestController
@@ -38,7 +39,7 @@ class PostController {
     }
 
     @PostMapping("/create")
-    fun create(@RequestBody post: Post): Post {
+    fun create(@Valid @RequestBody post: Post): Post {
         return service.create(post)
     }
 
@@ -48,7 +49,7 @@ class PostController {
     }
 
     @PutMapping("/update")
-    fun update(@RequestBody post: Post): Post{
+    fun update(@Valid @RequestBody post: Post): Post{
         return service.update(post)
     }
 

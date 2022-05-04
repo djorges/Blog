@@ -4,6 +4,7 @@ import com.example.blog.model.Commentary
 import com.example.blog.service.ICommentaryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 
 @RestController
@@ -12,7 +13,7 @@ class CommentaryController {
     @PostMapping("/posts/{postId}/commentaries")
     fun create(
         @PathVariable("postId") postId:Int,
-        @RequestBody commentary:Commentary
+        @Valid @RequestBody commentary:Commentary
     ): Commentary {
         return service.create(postId,commentary)
     }
@@ -20,7 +21,7 @@ class CommentaryController {
     @PutMapping("/posts/{postId}/commentaries")
     fun update(
         @PathVariable("postId") postId:Int,
-        @RequestBody commentary:Commentary
+        @Valid @RequestBody commentary:Commentary
     ): Commentary{
         return service.update(postId,commentary)
     }
