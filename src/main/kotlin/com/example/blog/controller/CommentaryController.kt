@@ -8,7 +8,7 @@ import javax.validation.Valid
 
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 class CommentaryController {
     @PostMapping("/posts/{postId}/commentaries")
     fun create(

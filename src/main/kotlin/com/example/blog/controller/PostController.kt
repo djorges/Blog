@@ -8,6 +8,7 @@ import com.example.blog.utils.Constants.DEFAULT_PAGE_SIZE
 import com.example.blog.utils.Constants.DEFAULT_SORT_BY
 import com.example.blog.utils.Constants.DEFAULT_SORT_DIRECTION
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
@@ -38,6 +39,7 @@ class PostController {
         return response
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     fun create(@Valid @RequestBody post: Post): Post {
         return service.create(post)
@@ -48,11 +50,13 @@ class PostController {
         return service.getById(id)
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update")
     fun update(@Valid @RequestBody post: Post): Post{
         return service.update(post)
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     fun delete(@PathVariable("id") id:Int): String{
         return service.delete(id)
